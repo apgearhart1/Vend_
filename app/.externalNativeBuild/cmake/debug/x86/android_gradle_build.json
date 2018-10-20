@@ -1,9 +1,9 @@
 
 {
-	"buildFiles" : [ "C:/Users/bowsh/HackKstate/Vend_/app/CMakeLists.txt" ],
+	"buildFiles" : [ "/Users/admin/Documents/Vend1/app/CMakeLists.txt" ],
 	"cleanCommands" : 
 	[
-		"C:\\Users\\bowsh\\AppData\\Local\\Android\\Sdk\\cmake\\3.6.4111459\\bin\\cmake.exe --build C:\\Users\\bowsh\\HackKstate\\Vend_\\app\\.externalNativeBuild\\cmake\\debug\\x86 --target clean"
+		"/Users/admin/Library/Android/sdk/cmake/3.6.4111459/bin/cmake --build /Users/admin/Documents/Vend1/app/.externalNativeBuild/cmake/debug/x86 --target clean"
 	],
 	"cppFileExtensions" : [ "cpp" ],
 	"libraries" : 
@@ -12,27 +12,27 @@
 		{
 			"abi" : "x86",
 			"artifactName" : "native-lib",
-			"buildCommand" : "C:\\Users\\bowsh\\AppData\\Local\\Android\\Sdk\\cmake\\3.6.4111459\\bin\\cmake.exe --build C:\\Users\\bowsh\\HackKstate\\Vend_\\app\\.externalNativeBuild\\cmake\\debug\\x86 --target native-lib",
+			"buildCommand" : "/Users/admin/Library/Android/sdk/cmake/3.6.4111459/bin/cmake --build /Users/admin/Documents/Vend1/app/.externalNativeBuild/cmake/debug/x86 --target native-lib",
 			"buildType" : "debug",
 			"files" : 
 			[
 				
 				{
-					"flags" : "  --target=i686-none-linux-android19 --gcc-toolchain=C:/Users/bowsh/AppData/Local/Android/Sdk/ndk-bundle/toolchains/x86-4.9/prebuilt/windows-x86_64 --sysroot=C:/Users/bowsh/AppData/Local/Android/Sdk/ndk-bundle/sysroot  -Dnative_lib_EXPORTS -isystem C:\\Users\\bowsh\\AppData\\Local\\Android\\Sdk\\ndk-bundle\\sources\\cxx-stl\\llvm-libc++\\include -isystem C:\\Users\\bowsh\\AppData\\Local\\Android\\Sdk\\ndk-bundle\\sources\\android\\support\\include -isystem C:\\Users\\bowsh\\AppData\\Local\\Android\\Sdk\\ndk-bundle\\sources\\cxx-stl\\llvm-libc++abi\\include  -isystem C:/Users/bowsh/AppData/Local/Android/Sdk/ndk-bundle/sysroot/usr/include/i686-linux-android -g -DANDROID -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -mstackrealign -Wa,--noexecstack -Wformat -Werror=format-security -std=c++11 -std=c++11 -fexceptions -O0 -fno-limit-debug-info  -fPIC    -c ",
-					"src" : "C:/Users/bowsh/HackKstate/Vend_/app/src/main/cpp/native-lib.cpp",
-					"workingDirectory" : "C:/Users/bowsh/HackKstate/Vend_/app/.externalNativeBuild/cmake/debug/x86"
+					"flags" : "  --target=i686-none-linux-android19 --gcc-toolchain=/Users/admin/Library/Android/sdk/ndk-bundle/toolchains/x86-4.9/prebuilt/darwin-x86_64 --sysroot=/Users/admin/Library/Android/sdk/ndk-bundle/sysroot  -Dnative_lib_EXPORTS -isystem /Users/admin/Library/Android/sdk/ndk-bundle/sources/cxx-stl/llvm-libc++/include -isystem /Users/admin/Library/Android/sdk/ndk-bundle/sources/android/support/include -isystem /Users/admin/Library/Android/sdk/ndk-bundle/sources/cxx-stl/llvm-libc++abi/include  -isystem /Users/admin/Library/Android/sdk/ndk-bundle/sysroot/usr/include/i686-linux-android -g -DANDROID -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -mstackrealign -Wa,--noexecstack -Wformat -Werror=format-security -std=c++11 -std=c++11 -fexceptions -O0 -fno-limit-debug-info  -fPIC    -c ",
+					"src" : "/Users/admin/Documents/Vend1/app/src/main/cpp/native-lib.cpp",
+					"workingDirectory" : "/Users/admin/Documents/Vend1/app/.externalNativeBuild/cmake/debug/x86"
 				}
 			],
-			"output" : "C:/Users/bowsh/HackKstate/Vend_/app/build/intermediates/cmake/debug/obj/x86/libnative-lib.so",
-			"toolchain" : "4018004329"
+			"output" : "/Users/admin/Documents/Vend1/app/build/intermediates/cmake/debug/obj/x86/libnative-lib.so",
+			"toolchain" : "7902362879982753818"
 		}
 	},
 	"toolchains" : 
 	{
-		"4018004329" : 
+		"7902362879982753818" : 
 		{
-			"cCompilerExecutable" : "C:/Users/bowsh/AppData/Local/Android/Sdk/ndk-bundle/toolchains/llvm/prebuilt/windows-x86_64/bin/clang.exe",
-			"cppCompilerExecutable" : "C:/Users/bowsh/AppData/Local/Android/Sdk/ndk-bundle/toolchains/llvm/prebuilt/windows-x86_64/bin/clang++.exe"
+			"cCompilerExecutable" : "/Users/admin/Library/Android/sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64/bin/clang",
+			"cppCompilerExecutable" : "/Users/admin/Library/Android/sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64/bin/clang++"
 		}
 	}
 }
