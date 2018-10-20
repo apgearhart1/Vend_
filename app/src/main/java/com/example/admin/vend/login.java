@@ -34,6 +34,7 @@ import java.util.Map;
 
 public class login extends AppCompatActivity {
 
+    private Notifications Notifications = new Notifications(this);
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -116,6 +117,10 @@ public class login extends AppCompatActivity {
     // Used to load the 'native-lib' library on application startup.
     static {
         System.loadLibrary("native-lib");
+    }
+
+    public void sendNotification (View view){
+        Notifications.sendNotification(view);
     }
 
     private void createNotificationChannel() {

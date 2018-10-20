@@ -1,16 +1,16 @@
 {
   "buildFiles": [
-    "/Users/nolan/Documents/development/hackkstate/Vend_/app/CMakeLists.txt"
+    "C:\\Users\\bowsh\\HackKstate\\Vend_\\app\\CMakeLists.txt"
   ],
   "cleanCommands": [
-    "/Users/nolan/Library/Android/sdk/cmake/3.6.4111459/bin/cmake --build /Users/nolan/Documents/development/hackkstate/Vend_/app/.externalNativeBuild/cmake/debug/armeabi-v7a --target clean"
+    "C:\\Users\\bowsh\\AppData\\Local\\Android\\Sdk\\cmake\\3.6.4111459\\bin\\cmake.exe --build C:\\Users\\bowsh\\HackKstate\\Vend_\\app\\.externalNativeBuild\\cmake\\debug\\armeabi-v7a --target clean"
   ],
   "libraries": {
     "native-lib-Debug-armeabi-v7a": {
       "artifactName": "native-lib",
-      "buildCommand": "/Users/nolan/Library/Android/sdk/cmake/3.6.4111459/bin/cmake --build /Users/nolan/Documents/development/hackkstate/Vend_/app/.externalNativeBuild/cmake/debug/armeabi-v7a --target native-lib",
+      "buildCommand": "C:\\Users\\bowsh\\AppData\\Local\\Android\\Sdk\\cmake\\3.6.4111459\\bin\\cmake.exe --build C:\\Users\\bowsh\\HackKstate\\Vend_\\app\\.externalNativeBuild\\cmake\\debug\\armeabi-v7a --target native-lib",
       "abi": "armeabi-v7a",
-      "output": "/Users/nolan/Documents/development/hackkstate/Vend_/app/build/intermediates/cmake/debug/obj/armeabi-v7a/libnative-lib.so"
+      "output": "C:\\Users\\bowsh\\HackKstate\\Vend_\\app\\build\\intermediates\\cmake\\debug\\obj\\armeabi-v7a\\libnative-lib.so"
     }
   }
 }

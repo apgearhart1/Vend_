@@ -14,7 +14,7 @@
         android:inputType="textPersonName"
         android:hint="Name"
         tools:layout_editor_absoluteX="16dp"
-        android:layout_editor_absoluteY="16dp" />
+        tools:layout_editor_absoluteY="16dp" />
 
     <EditText
         android:id="@+id/longitude"
