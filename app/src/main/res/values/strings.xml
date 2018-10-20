@@ -15,4 +15,8 @@
     <string name="permission_rationale">"Contacts permissions are needed for providing email
         completions."
     </string>
+    <string name="channel_name">Channel1</string>
+    <string name="channel_description">Channel1</string>
+    <string name="CHANNEL_1_ID">1</string>
+
 </resources>
