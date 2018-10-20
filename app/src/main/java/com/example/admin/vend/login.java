@@ -48,7 +48,7 @@ public class login extends AppCompatActivity {
 
         Button login = (Button)findViewById(R.id.loginBtn);
         Button signup = (Button)findViewById(R.id.signUpBtn);
-
+        Button maps = (Button)findViewById(R.id.map);
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -63,7 +63,7 @@ public class login extends AppCompatActivity {
                                     Log.d("HERE", "signInWithEmail:success");
                                     FirebaseUser user = mAuth.getCurrentUser();
                                     if(user.getDisplayName() == "user") {
-                                        startActivity(new Intent(login.this, map.class));
+                                        startActivity(new Intent(login.this, MapsActivity.class));
                                     } else {
                                         startActivity(new Intent(login.this, addSpot.class));
                                     }
@@ -84,6 +84,7 @@ public class login extends AppCompatActivity {
                 startActivity(new Intent(login.this, signup.class));
             }
         });
+
 
     }
 
