@@ -18,10 +18,16 @@ import android.widget.Toast;
 
 import com.example.admin.vend.database;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.FirebaseFirestore;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class login extends AppCompatActivity {
 
@@ -32,6 +38,8 @@ public class login extends AppCompatActivity {
 
         final EditText email = (EditText)findViewById(R.id.emailTxt);
         final EditText password = (EditText)findViewById(R.id.passwordTxt);
+
+        final TextView hw = (TextView)findViewById(R.id.sample_text);
 
         Button login = (Button)findViewById(R.id.loginBtn);
         Button signup = (Button)findViewById(R.id.signUpBtn);
@@ -49,6 +57,11 @@ public class login extends AppCompatActivity {
                                     // Sign in success, update UI with the signed-in user's information
                                     Log.d("HERE", "signInWithEmail:success");
                                     FirebaseUser user = mAuth.getCurrentUser();
+                                    if(user.getDisplayName() == "user") {
+                                        startActivity(new Intent(login.this, map.class));
+                                    } else {
+                                        startActivity(new Intent(login.this, addSpot.class));
+                                    }
                                 } else {
                                     // If sign in fails, display a message to the user.
                                     Log.w("HERE", "signInWithEmail:failure", task.getException());
@@ -67,9 +80,6 @@ public class login extends AppCompatActivity {
             }
         });
 
-        //database db = new database();
-        //db.createVendor();
-        //db.getLocations();
     }
 
     @Override

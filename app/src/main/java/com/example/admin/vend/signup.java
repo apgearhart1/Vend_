@@ -72,6 +72,8 @@ public class signup extends AppCompatActivity {
                                         profileUpdates = new UserProfileChangeRequest.Builder()
                                                 .setDisplayName("user")
                                                 .build();
+                                        database data = new database();
+                                        data.createUser(phoneNumber.getText().toString());
                                     }
 
                                     user.updateProfile(profileUpdates)
@@ -83,8 +85,7 @@ public class signup extends AppCompatActivity {
                                                     }
                                                 }
                                             });
-                                    database data = new database();
-                                    data.createUser(phoneNumber.getText().toString());
+
 
 
                                 } else {
