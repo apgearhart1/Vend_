@@ -1,4 +1,4 @@
 package com.example.admin.vend;
 
-public class map {
+public class signup {
 }
