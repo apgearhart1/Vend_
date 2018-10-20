@@ -21,10 +21,15 @@ public class Notifications {
     public void sendNotification(View view){
 
         Intent goingIntent = new Intent(context, Recommendbackend.class);
-        goingIntent.setAction("test");
+        goingIntent.setAction("Going");
         goingIntent.putExtra("going", true);
         PendingIntent goingPendingIntent =
                 PendingIntent.getBroadcast(context,0, goingIntent, 0);
+        Intent notgoingIntent = new Intent(context, Recommendbackend.class);
+        goingIntent.setAction("Not Going");
+        goingIntent.putExtra("going", false);
+        PendingIntent notgoingPendingIntent =
+                PendingIntent.getBroadcast(context,0, notgoingIntent, 0);
 
 
 
@@ -39,6 +44,7 @@ public class Notifications {
         builder.setContentText("Vendor y is x miles from you");
         builder.setSubText("Tap to view vendor details.");
         builder.addAction(R.drawable.ic_t_pose, "Going", goingPendingIntent);
+        builder.addAction(R.drawable.ic_t_pose, "Not Going", notgoingPendingIntent);
         NotificationManager notificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
         notificationManager.notify(NOTIFICATION_ID, builder.build());
     }
