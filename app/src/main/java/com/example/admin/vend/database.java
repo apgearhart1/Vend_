@@ -15,7 +15,9 @@ import com.google.firebase.firestore.SetOptions;
 
 import java.io.FileInputStream;
 import java.io.InputStream;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import static android.content.ContentValues.TAG;
@@ -42,11 +44,14 @@ public class database {
                 });
     }
 
-    public void createVendor() {
+    public void createVendor(String name, double lon, double lat, String open, String close, String category) {
         Map<String, Object> data = new HashMap<>();
-        data.put("name", "Vendor3");
-        data.put("longitude", 5500);
-        data.put("latitude", 6400);
+        data.put("name", name);
+        data.put("longitude", lon);
+        data.put("latitude", lat);
+        data.put("open", open);
+        data.put("close", close);
+        data.put("category", category);
 
         Log.d("HERE", "START");
 
@@ -69,11 +74,21 @@ public class database {
     }
 
     public void createUser(String phoneNumber) {
-        Map<String, Object> data = new HashMap<>();
-        data.put("num1", 1234);
-        data.put("num2", 4321);
+        Map<String, Object> nums = new HashMap<>();
+        nums.put("num1", 0);
+        nums.put("num2", 1);
+
+        List<Map<String, Object>> maps = new ArrayList<Map<String, Object>>();
+
 
         System.out.println(12341234);
+
+        for(int i = 1; i <= 8; i++) {
+            maps.add(nums);
+        }
+
+        Map<String, Object> data = new HashMap<>();
+        data.put("parameters", maps);
 
         db.collection("users")
                 .document(phoneNumber)
