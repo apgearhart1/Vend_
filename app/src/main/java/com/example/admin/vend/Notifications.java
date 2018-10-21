@@ -36,15 +36,15 @@ public class Notifications {
         Intent intent = new Intent(context, Recommended.class);
         PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, intent, 0);
         NotificationCompat.Builder builder = new NotificationCompat.Builder(context,CHANNEL_1_ID);
-        builder.setSmallIcon(R.drawable.ic_t_pose);
+        builder.setSmallIcon(R.drawable.ic_vend_logothing);
         builder.setContentIntent(pendingIntent);
         builder.setAutoCancel(true);
-        builder.setLargeIcon(BitmapFactory.decodeResource(context.getResources(), R.drawable.ic_t_pose));
+        builder.setLargeIcon(BitmapFactory.decodeResource(context.getResources(), R.drawable.ic_vend_logothing));
         builder.setContentTitle("Vendor Recommendation");
         builder.setContentText("Vendor y is x miles from you");
         builder.setSubText("Tap to view vendor details.");
-        builder.addAction(R.drawable.ic_t_pose, "Going", goingPendingIntent);
-        builder.addAction(R.drawable.ic_t_pose, "Not Going", notgoingPendingIntent);
+        builder.addAction(R.drawable.ic_vend_logothing, "Going", goingPendingIntent);
+        builder.addAction(R.drawable.ic_vend_logothing, "Not Going", notgoingPendingIntent);
         NotificationManager notificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
         notificationManager.notify(NOTIFICATION_ID, builder.build());
     }
