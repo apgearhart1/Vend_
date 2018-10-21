@@ -60,6 +60,9 @@
         android:background="@drawable/buttonshape"
         android:text="Sign Up"
         android:layout_marginTop="300dp"
+        android:textColor="@android:color/white"
+        android:textSize="20sp"
+        android:textAllCaps="false"
         app:layout_anchor="@+id/include"
         app:layout_anchorGravity="top|center" />
 
