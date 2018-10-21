@@ -92,7 +92,8 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                                 Log.d("HERE", document.getId() + " => " + document.getDouble("longitude"));
                                 mMap.addMarker(new MarkerOptions()
                                         .position(new LatLng(document.getDouble("latitude"), document.getDouble("longitude")))
-                                        .title("Metal recycling bin")
+                                        .title(document.getString("name"))
+                                        .snippet("Open: " + document.getString("open") + ", Close: " + document.getString(("close")))
                                         .draggable(true));
                             }
                         } else {
