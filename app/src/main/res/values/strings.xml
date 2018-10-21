@@ -20,4 +20,15 @@
     <string name="CHANNEL_1_ID">1</string>
     <string name="title_activity_maps">Map</string>
 
+    <string-array name="categories">
+        <item>Chinese food</item>
+        <item>Mexican food</item>
+        <item>Breakfast food</item>
+        <item>Ice cream</item>
+        <item>Jewelry</item>
+        <item>Art</item>
+        <item>Apparel</item>
+        <item>Hot dogs</item>
+    </string-array>
+
 </resources>
