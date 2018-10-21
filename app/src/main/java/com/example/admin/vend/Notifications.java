@@ -18,7 +18,7 @@ public class Notifications {
         this.context = context;
     }
 
-    public void sendNotification(View view){
+    public void sendNotification(){
 
         Intent goingIntent = new Intent(context, Recommendbackend.class);
         goingIntent.setAction("Going");

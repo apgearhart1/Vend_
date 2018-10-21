@@ -2,6 +2,7 @@ package com.example.admin.vend;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Button;
@@ -28,6 +29,16 @@ public class addSpot extends AppCompatActivity {
             public void onClick(View view) {
                 database data = new database();
                 data.createVendor(name.getText().toString(), Double.parseDouble(longitude.getText().toString()), Double.parseDouble(latitude.getText().toString()), open.getText().toString(), close.getText().toString(), category.getText().toString());
+
+            }
+        });
+
+        currentLocation.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                MapsActivity ma = new MapsActivity();
+                Log.d("HERE", Double.toString(ma.getLat()));
+                Log.d("HERE", Double.toString(ma.getLng()));
 
             }
         });

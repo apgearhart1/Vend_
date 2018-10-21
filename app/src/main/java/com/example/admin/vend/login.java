@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.util.Log;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -27,7 +28,13 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreException;
+import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -89,6 +96,34 @@ public class login extends AppCompatActivity {
     }
 
     @Override
+    protected void onStop() {
+        super.onStop();  // Always call the superclass method first
+        Toast.makeText(getApplicationContext(), "onStop called", Toast.LENGTH_LONG).show();
+
+        final boolean firstTime[] = {true};
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+
+        final DocumentReference docRef = db.collection("locations").document("4CcpZP6K1bElCFP1YYlr");
+        CollectionReference colRef = db.collection("locations");
+        colRef.addSnapshotListener(new EventListener<QuerySnapshot>() {
+            @Override
+            public void onEvent(QuerySnapshot documentSnapshots, FirebaseFirestoreException e) {
+                if (e != null) {
+                    Log.w("HERE", "Listen failed.", e);
+                    return;
+                }
+                if(firstTime[0]) {
+                    firstTime[0] = false;
+                } else {
+                    sendNotification();
+                }
+            }
+        });
+
+    }
+
+
+    @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_map, menu);
@@ -120,8 +155,8 @@ public class login extends AppCompatActivity {
         System.loadLibrary("native-lib");
     }
 
-    public void sendNotification (View view){
-        Notifications.sendNotification(view);
+    public void sendNotification () {
+        Notifications.sendNotification();
     }
 
     private void createNotificationChannel() {
