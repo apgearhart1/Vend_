@@ -20,10 +20,15 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.example.admin.vend.database;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.logging.Logger;
 
@@ -43,7 +48,6 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         public void onLocationChanged(Location location) {
             if (location != null) {
 
-                drawMarker(location);
                 mLocationManager.removeUpdates(mLocationListener);
             } else {
 
@@ -74,6 +78,28 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
+
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        db.collection("locations")
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+
+                            for (DocumentSnapshot document : task.getResult()) {
+                                Log.d("HERE", document.getId() + " => " + document.getDouble("latitude"));// document.getData()
+                                Log.d("HERE", document.getId() + " => " + document.getDouble("longitude"));
+                                mMap.addMarker(new MarkerOptions()
+                                        .position(new LatLng(document.getDouble("latitude"), document.getDouble("longitude")))
+                                        .title("Metal recycling bin")
+                                        .draggable(true));
+                            }
+                        } else {
+                            Log.d("HERE", "Error getting documents: ", task.getException());
+                        }
+                    }
+                });
     }
     private void handleNewLocation(Location location) {
         Log.d("d", location.toString());
@@ -85,7 +111,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         MarkerOptions options = new MarkerOptions()
                 .position(latLng)
                 .title("You are here");
-        mMap.addMarker(options);
+        //mMap.addMarker(options);
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom((latLng), 11.0F));
     }
     private void getLocationPermission() {
@@ -212,6 +238,18 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
 
     }
 
+    private void drawMarkerLatLon(double lat, double lon) {
+        if (mMap != null) {
+            mMap.clear();
+            LatLng gps = new LatLng(lat, lon);
+            mMap.addMarker(new MarkerOptions()
+                    .position(gps)
+                    .title("Current Position"));
+            mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(gps, 12));
+        }
+
+    }
+
     @Override
     public void onMapReady(GoogleMap googleMap) {
 
@@ -228,3 +266,4 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         }
     }
 }
+
