@@ -38,6 +38,7 @@ public class Notifications {
 
         Notifications.lat = lat;
         Notifications.lng = lng;
+        Notifications.category = category;
 
         Intent intent = new Intent(context, Recommended.class);
         PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, intent, 0);

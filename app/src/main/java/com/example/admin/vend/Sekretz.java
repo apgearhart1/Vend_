@@ -14,16 +14,17 @@ import java.util.Map;
 public class Sekretz {
     private static FirebaseFirestore firestore = FirebaseFirestore.getInstance();
     private static String phoneNumber;
-    private static List<Map<String, Double>> model;
+    public static List<Map<String, Double>> model;
     private static double lat = 39.1836;
     private static double lng = -96.5717;
 
     public Sekretz(String phoneNumber) {
         this.phoneNumber = phoneNumber;
+        getModel();
     }
 
     private void getModel() {
-        firestore.collection("collection").document(phoneNumber).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+        firestore.collection("users").document(phoneNumber).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
             @Override
             public void onComplete(@NonNull Task<DocumentSnapshot> task) {
                 if(task.isComplete()) {
@@ -46,7 +47,7 @@ public class Sekretz {
     public static void putModel() {
         Map<String, Object> data = new HashMap<String, Object>();
         data.put("parameters", model);
-        firestore.collection("collection").document(phoneNumber).set(data);
+        firestore.collection("users").document(phoneNumber).set(data);
     }
 
     private static void gradientDescent(double lat, double lng, int category, int y) {
@@ -54,11 +55,12 @@ public class Sekretz {
         double j = Math.log(p) * y - Math.log(1-p) * (1-y);
         double gradient1 = p-y;
         double gradient2 = latLngDistToMiles(lat, lng, Sekretz.lat, Sekretz.lng)*(p-y);
-        model.get(category-1).put("num1", model.get(category-1).get("num1") - gradient1*0.3);
-        model.get(category-1).put("num2", model.get(category-1).get("num2") - gradient1*0.3);
+        model.get(category-1).put("num1", model.get(category-1).get("num1") - gradient1*0.2);
+        model.get(category-1).put("num2", model.get(category-1).get("num2") - gradient2*0.2);
     }
 
     public static void train(double lat, double lng, int category, int y) {
+        System.out.println("PhoneNumber: " + phoneNumber);
         for(int i = 0; i < 5; i++) {
             gradientDescent(lat, lng, category, y);
         }

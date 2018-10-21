@@ -29,6 +29,7 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.DocumentChange;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.EventListener;
@@ -106,7 +107,6 @@ public class login extends AppCompatActivity {
         final boolean firstTime[] = {true};
         FirebaseFirestore db = FirebaseFirestore.getInstance();
 
-        final DocumentReference docRef = db.collection("locations").document("4CcpZP6K1bElCFP1YYlr");
         CollectionReference colRef = db.collection("locations");
         colRef.addSnapshotListener(new EventListener<QuerySnapshot>() {
             @Override
@@ -117,7 +117,7 @@ public class login extends AppCompatActivity {
                 }
                 if(firstTime[0]) {
                     firstTime[0] = false;
-                } else {
+                } else if(sekretz.model != null){
                     sendAlerts(documentSnapshots);
                 }
             }
@@ -126,20 +126,36 @@ public class login extends AppCompatActivity {
     }
 
     private void sendAlerts(QuerySnapshot documentSnapshots) {
-        documentSnapshots.forEach(new Consumer<DocumentSnapshot>() {
-            @Override
-            public void accept(DocumentSnapshot documentSnapshot) {
-                Map<String, Object> data = documentSnapshot.getData();
+        for (DocumentChange dc : documentSnapshots.getDocumentChanges()) {
+            if(dc.getType() == DocumentChange.Type.ADDED) {
+                Map<String, Object> data = dc.getDocument().getData();
                 String name = (String) data.get("name");
+
+                if(name.equals("")) {
+                    return;
+                }
+
                 int category = Integer.parseInt((String) data.get("category"));
-                double latitude = Double.parseDouble((String) data.get("latitude"));
-                double longitude = Double.parseDouble((String) data.get("longitude"));
+                double latitude, longitude;
+
+                if(data.get("latitude") instanceof Long) {
+                    latitude = ((Long) data.get("latitude")).doubleValue();
+                }
+                else {
+                    latitude = (double) data.get("latitude");
+                }
+                if(data.get("longitude") instanceof Long) {
+                    longitude = ((Long) data.get("longitude")).doubleValue();
+                }
+                else {
+                    longitude = (double) data.get("longitude");
+                }
 
                 if(sekretz.predict(latitude, longitude, category) > 0.5) {
                     sendNotification(name, latitude, longitude, category);
                 }
             }
-        });
+        }
     }
 
     @Override

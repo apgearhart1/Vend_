@@ -75,13 +75,14 @@ public class database {
 
     public void createUser(String phoneNumber) {
         Map<String, Object> nums = new HashMap<>();
-        nums.put("num1", 0);
-        nums.put("num2", 1);
+        nums.put("num1", 0.0);
+        nums.put("num2", 1.0);
 
         List<Map<String, Object>> maps = new ArrayList<Map<String, Object>>();
 
 
         System.out.println(12341234);
+        System.out.println(phoneNumber);
 
         for(int i = 1; i <= 8; i++) {
             maps.add(nums);
