@@ -19,9 +19,9 @@ public class Recommendbackend extends BroadcastReceiver {
         Toast.makeText(context, log, Toast.LENGTH_LONG).show();
 
         if(intent.getAction() == "Going") {
-            System.out.println("***** " + "Going");
+            Sekretz.train(Notifications.lat, Notifications.lng, Notifications.category, 1);
         } else {
-            System.out.println("***** " + "Not Going");
+            Sekretz.train(Notifications.lat, Notifications.lng, Notifications.category, 0);
         }
 
     }

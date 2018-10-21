@@ -38,10 +38,12 @@ import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.function.Consumer;
 
 public class login extends AppCompatActivity {
 
     private Notifications Notifications = new Notifications(this);
+    private Sekretz sekretz;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -69,7 +71,8 @@ public class login extends AppCompatActivity {
                                     // Sign in success, update UI with the signed-in user's information
                                     Log.d("HERE", "signInWithEmail:success");
                                     FirebaseUser user = mAuth.getCurrentUser();
-                                    if(user.getDisplayName() == "user") {
+                                    if(user.getDisplayName().contains("user")) {
+                                        sekretz = new Sekretz(user.getDisplayName().substring(4));
                                         startActivity(new Intent(login.this, MapsActivity.class));
                                     } else {
                                         startActivity(new Intent(login.this, addSpot.class));
@@ -115,13 +118,29 @@ public class login extends AppCompatActivity {
                 if(firstTime[0]) {
                     firstTime[0] = false;
                 } else {
-                    sendNotification();
+                    sendAlerts(documentSnapshots);
                 }
             }
         });
 
     }
 
+    private void sendAlerts(QuerySnapshot documentSnapshots) {
+        documentSnapshots.forEach(new Consumer<DocumentSnapshot>() {
+            @Override
+            public void accept(DocumentSnapshot documentSnapshot) {
+                Map<String, Object> data = documentSnapshot.getData();
+                String name = (String) data.get("name");
+                int category = Integer.parseInt((String) data.get("category"));
+                double latitude = Double.parseDouble((String) data.get("latitude"));
+                double longitude = Double.parseDouble((String) data.get("longitude"));
+
+                if(sekretz.predict(latitude, longitude, category) > 0.5) {
+                    sendNotification(name, latitude, longitude, category);
+                }
+            }
+        });
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -155,8 +174,8 @@ public class login extends AppCompatActivity {
         System.loadLibrary("native-lib");
     }
 
-    public void sendNotification () {
-        Notifications.sendNotification();
+    public void sendNotification (String name, double lat, double lng, int category) {
+        Notifications.sendNotification(name, lat, lng, category);
     }
 
     private void createNotificationChannel() {

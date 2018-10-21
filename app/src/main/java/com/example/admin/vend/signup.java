@@ -70,7 +70,7 @@ public class signup extends AppCompatActivity {
                                                 .build();
                                     } else {
                                         profileUpdates = new UserProfileChangeRequest.Builder()
-                                                .setDisplayName("user")
+                                                .setDisplayName("user" + phoneNumber.getText().toString())
                                                 .build();
                                         database data = new database();
                                         data.createUser(phoneNumber.getText().toString());
