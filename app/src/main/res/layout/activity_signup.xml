@@ -22,48 +22,70 @@
 
     <EditText
         android:id="@+id/emailTxt1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="204dp"
+        android:layout_height="47dp"
+        android:fontFamily="@font/montserrat"
         android:hint="Email"
         app:layout_anchor="@+id/include"
-        app:layout_anchorGravity="top|center" />
+        app:layout_anchorGravity="top|center"
+        android:layout_marginTop="100dp"
+    />
 
     <EditText
         android:id="@+id/passwordTxt1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="204dp"
+        android:layout_height="47dp"
+        android:fontFamily="@font/montserrat"
         android:hint="Password"
         android:inputType="textPassword"
         app:layout_anchor="@+id/include"
         app:layout_anchorGravity="top|center"
-        android:layout_marginTop="50dp"/>
+        android:layout_marginTop="150dp"/>
     <EditText
         android:id="@+id/phoneNumberTxt1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="204dp"
+        android:layout_height="47dp"
+        android:fontFamily="@font/montserrat"
         android:hint="Phone Number"
         android:inputType="phone"
         app:layout_anchor="@+id/include"
         app:layout_anchorGravity="top|center"
-        android:layout_marginTop="100dp"/>
+        android:layout_marginTop="200dp"/>
 
     <Button
         android:id="@+id/signUpBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:fontFamily="@font/montserrat"
+        android:background="@drawable/buttonshape"
         android:text="Sign Up"
-        android:layout_marginTop="200dp"
+        android:layout_marginTop="300dp"
         app:layout_anchor="@+id/include"
         app:layout_anchorGravity="top|center" />
 
     <Switch
         android:id="@+id/switch1"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="204dp"
+        android:layout_height="47dp"
+        android:layout_marginTop="250dp"
+        android:checked="false"
+        android:fontFamily="@font/montserrat"
+        android:text="Are you a vendor?"
         android:textOff="You are a Customer"
         android:textOn="You are a vendor"
-        android:text="Are you a vendor?"
-        android:layout_marginTop="150dp"
+        android:textSize="18sp"
+        app:layout_anchor="@+id/include"
+        app:layout_anchorGravity="top|center"
+        tools:checked="false" />
+
+    <TextView
+        android:id="@+id/signuptitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/montserrat"
+        android:text="Sign Up"
+        android:textAlignment="center"
+        android:textSize="50sp"
         app:layout_anchor="@+id/include"
         app:layout_anchorGravity="top|center" />
 
